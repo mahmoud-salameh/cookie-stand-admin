@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
-
+import Link from 'next/dist/client/link';
 export default function Home() {
   const [data, setData] = useState([]);
 
@@ -11,28 +11,30 @@ export default function Home() {
       Minimum: event.target.Minimum.value,
       Maximum: event.target.Maximum.value,
       Average: event.target.Average.value,
+      num_locations: data.length +1
     };
     setData((answers) => [...answers, answeredQuestion]);
   }
+  
   return (
     <div className="">
       <Head>
         <title>Cookie Stand Admin</title>
-        <link rel="icon" href="/favicon.ico" />
+        
       </Head>
 
       <main className=" bg-green-50">
 
 
-        <header className='bg-green-500 p-6'>
+        <header className='flex items-center justify-between bg-green-500 p-6'>
 
         <h1 className='text-5xl'>Cookie Stand Admin</h1>
-
+        <Link href="/overview"><a className=' p-2 bg-green-100 text-right'>Overview</a></Link>
         </header>
 
         <form className="flex-col w-3/4 p-2 mx-auto my-8 bg-green-300" onSubmit={submitForm}>
         <fieldset>  
-          <h1 className="my-3 text-2xl text-center" type ='text'>Cookie Stand Admin</h1>  
+          <h1 className="my-3 text-2xl text-center" >Cookie Stand Admin</h1>  
           <div className="flex">
           <label className="mx-1">Location</label>
           <input name="Location"  className="flex-auto bg-gray-100" />
@@ -54,6 +56,8 @@ export default function Home() {
           </div>
         </fieldset>  
         </form>
+        
+        {data.length ?
 
         <table className="w-1/2 mx-auto my-4">
           <thead>
@@ -82,9 +86,11 @@ export default function Home() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>:
+         <p className="text-center">No Cookies Stands Available</p>
+        }
 
-      <footer className="bg-green-500 p-6 text-3xl">&copy;2021</footer>
+      <footer className="bg-green-500 p-6 text-3xl">{`${data.length} Locations World Wide`}</footer>
       </main>
     </div>
   );
