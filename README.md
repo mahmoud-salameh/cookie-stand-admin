@@ -2,7 +2,7 @@
 
 # PR-lab38:(https://github.com/mahmoud-salameh/cookie-stand-admin/pull/2)
 
-
+# deploy-link:(https://cookie-stand-admin-vert.vercel.app/)
 # Lab: Welcome to React, Next.js & TailwindCSS
 
 ## Overview
